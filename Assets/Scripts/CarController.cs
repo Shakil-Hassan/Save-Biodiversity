@@ -9,6 +9,8 @@ public class CarController : MonoBehaviour
     public float carMaxSpeed;
     public Rigidbody rigidbodyCar;
 
+    private static CarController instance;
+    public static CarController Instance { get { return instance; } }
     
     /// <summary>
     /// Used For Road
@@ -22,16 +24,31 @@ public class CarController : MonoBehaviour
     public static int numberOfBatteries;
     public static int numberOfPetrolCans;
 
-    public ProgressBarController oxygenBar;
-    public ProgressBarController CarbonDioxideBar;
+    // public ProgressBarController oxygenBar;
+    // public ProgressBarController CarbonDioxideBar;
 
     public LevelCompleteScreen levelCompleteScreen;
     public GameOverScreen gameOverScreen;
 
 
+    private void Awake()
+    {
+        if (instance == null)
+        {
+            instance = this;
+            DontDestroyOnLoad(gameObject);
+        }
+        else
+        {
+            Destroy(gameObject);
+        }
+
+    }
+
+
     public void LevelComplete()
     {
-        if(numberOfBatteries >= oxygenBar.slider.maxValue)
+        if(numberOfBatteries >= ProgressBarController.Instance.slider.maxValue)
         {
             carForwardSpeed = 0;
             levelCompleteScreen.Setup();
@@ -41,7 +58,7 @@ public class CarController : MonoBehaviour
 
     public void GameOver()
     {
-        if (numberOfPetrolCans >= CarbonDioxideBar.slider.maxValue)
+        if (numberOfPetrolCans >= ProgressBarController.Instance.slider.maxValue)
         {
             carForwardSpeed = 0;
             gameOverScreen.Setup();
@@ -49,6 +66,9 @@ public class CarController : MonoBehaviour
 
         }
     }
+
+
+    
 
     // Start is called before the first frame update
     void Start()

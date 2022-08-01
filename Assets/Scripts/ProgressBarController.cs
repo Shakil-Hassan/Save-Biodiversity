@@ -5,6 +5,22 @@ public class ProgressBarController : MonoBehaviour
 {
     public Slider slider;
     
+    private static ProgressBarController instance;
+    public static ProgressBarController Instance { get { return instance; } }
+
+    private void Awake()
+    {
+        if (instance == null)
+        {
+            instance = this;
+            DontDestroyOnLoad(gameObject);
+        }
+        else
+        {
+            Destroy(gameObject);
+        }
+
+    }
     public void SetMinOxygen(int oxygen)
     {
         slider.minValue = oxygen;
