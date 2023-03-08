@@ -1,13 +1,10 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class BatteryController : MonoBehaviour
 {
-    // Update is called once per frame
-    void Update()
+    private void Update()
     {
-        transform.Rotate(0, 100 * Time.deltaTime, 0);
+        transform.Rotate(0f, 100f * Time.deltaTime, 0f);
     }
 
     private void OnTriggerEnter(Collider other)
@@ -15,7 +12,6 @@ public class BatteryController : MonoBehaviour
         if (other.gameObject.GetComponent<CarController>() != null)
         {
             CarController.numberOfBatteries += 1;
-            //Debug.Log("Oxygen : " + CarController.numberOfBatteries);
             Destroy(gameObject);
         }
     }

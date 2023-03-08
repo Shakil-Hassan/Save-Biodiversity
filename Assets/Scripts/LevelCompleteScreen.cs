@@ -8,14 +8,13 @@ public class LevelCompleteScreen : MonoBehaviour
         gameObject.SetActive(true);
     }
 
-
-    public void NextLevel()
+    public void LoadNextLevel()
     {
-        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
+        SceneManager.LoadScene(Random.Range(1, SceneManager.sceneCountInBuildSettings - 1));
     }
 
-    public void Home()
+    public void LoadMainMenu()
     {
-        SceneManager.LoadScene(0);
+        SceneManager.LoadScene("MainMenu");
     }
 }

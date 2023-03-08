@@ -1,28 +1,20 @@
- using UnityEngine;
+using UnityEngine;
 
 public class CameraHandler : MonoBehaviour
 {
-    public Transform cameraTarget;
-    public float smoothSpeed;
-    public Vector3 offset;
+    [SerializeField] private Transform cameraTarget;
+    [SerializeField] private float smoothSpeed;
 
-    
+    private Vector3 offset;
 
-    void Start()
+    private void Start()
     {
-       
         offset = transform.position - cameraTarget.position;
-
     }
 
-    void LateUpdate()
+    private void LateUpdate()
     {
-        
-            Vector3 newPosition = new Vector3(transform.position.x, transform.position.y, offset.z + cameraTarget.position.z);
-            transform.position = Vector3.Lerp(transform.position, newPosition, smoothSpeed * Time.deltaTime);
-        
-        
+        Vector3 targetPosition = cameraTarget.position + offset;
+        transform.position = Vector3.Lerp(transform.position, targetPosition, smoothSpeed * Time.deltaTime);
     }
-
-    
 }

@@ -1,50 +1,40 @@
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class RoadManager : MonoBehaviour
 {
+    [SerializeField] private GameObject[] roadPrefabs;
+    [SerializeField] private float roadLength = 145.4f;
+    [SerializeField] private int numberOfRoads = 3;
+    [SerializeField] private int safeZone = 100;
+    [SerializeField] private Transform carTransform;
 
-    public GameObject[] roadPrefabs;
-    public float zSpawn = 0;
-    public float roadLeanght = 145.4f;
-    public int numberOfRoads = 3;
-    public int safeZone = 100;
-
-    private List<GameObject> activeRoads = new List<GameObject> ();
-    public Transform carTransform;
+    private List<GameObject> activeRoads = new List<GameObject>();
+    private float zSpawn = 0;
 
     private void Start()
     {
-        for(int i = 0; i < numberOfRoads; i++)
+        SpawnRoad(0); // Spawn the initial road
+        for (int i = 1; i < numberOfRoads; i++)
         {
-            if(i == 0)
-            {
-                SpawnRoard(0);
-            }
-            else
-            {
-                SpawnRoard(Random.Range(0, roadPrefabs.Length));
-            }
-            
+            SpawnRoad(Random.Range(0, roadPrefabs.Length)); // Spawn the rest of the roads randomly
         }
-
     }
 
     private void Update()
     {
-        if (carTransform.position.z - safeZone > zSpawn - (numberOfRoads * roadLeanght))
+        if (carTransform.position.z - safeZone > zSpawn - (numberOfRoads * roadLength))
         {
-            SpawnRoard(Random.Range(0, roadPrefabs.Length));
-            DeleteRoad();
+            SpawnRoad(Random.Range(0, roadPrefabs.Length)); // Spawn a new road
+            DeleteRoad(); // Delete the oldest road
         }
     }
 
-    public void SpawnRoard(int roadIndex)
+    private void SpawnRoad(int roadIndex)
     {
-        GameObject road =  Instantiate(roadPrefabs[roadIndex], transform.forward * zSpawn, transform.rotation);
+        GameObject road = Instantiate(roadPrefabs[roadIndex], transform.forward * zSpawn, transform.rotation);
         activeRoads.Add(road);
-        zSpawn += roadLeanght;
+        zSpawn += roadLength;
     }
 
     private void DeleteRoad()

@@ -202,8 +202,8 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 40236960}
-  m_LocalRotation: {x: -0.051240236, y: -0.017402671, z: -0.0008930259, w: 0.9985343}
-  m_LocalPosition: {x: 0.3483743, y: 4.9712286, z: -79.99152}
+  m_LocalRotation: {x: -0.051240254, y: -0.017402636, z: -0.0008930243, w: 0.9985343}
+  m_LocalPosition: {x: 0.34837437, y: 4.9712286, z: -79.99152}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -224,7 +224,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   cameraTarget: {fileID: 212941094}
   smoothSpeed: 10
-  offset: {x: 0, y: 2.49, z: 55}
 --- !u!114 &40236965
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -413,8 +412,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   roadPrefabs:
   - {fileID: 3968000051935866474, guid: 1c6925e26890ee14787e0f8b4213535d, type: 3}
-  zSpawn: 0
-  roadLeanght: 145.4
+  roadLength: 145.4
   numberOfRoads: 3
   safeZone: 100
   carTransform: {fileID: 212941094}
@@ -718,7 +716,7 @@ GameObject:
   m_Component:
   - component: {fileID: 317043744}
   - component: {fileID: 317043746}
-  - component: {fileID: 317043745}
+  - component: {fileID: 317043747}
   m_Layer: 5
   m_Name: O2 Bar
   m_TagString: Untagged
@@ -749,19 +747,6 @@ RectTransform:
   m_AnchoredPosition: {x: 94.78873, y: -40}
   m_SizeDelta: {x: 131.5095, y: 28.2593}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &317043745
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 317043743}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f33e7ed1f4eac0e4aa737501f79f4efe, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  slider: {fileID: 317043746}
 --- !u!114 &317043746
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -813,6 +798,19 @@ MonoBehaviour:
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls: []
+--- !u!114 &317043747
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 317043743}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3c750edf827e44649ea17306cbc8fb9d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  OxygenSlider: {fileID: 317043746}
 --- !u!1 &415686004
 GameObject:
   m_ObjectHideFlags: 0
@@ -1615,19 +1613,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 801123851}
   m_CullTransparentMesh: 1
---- !u!114 &923504705
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3657289065588101462}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f33e7ed1f4eac0e4aa737501f79f4efe, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  slider: {fileID: 3657289065588101459}
 --- !u!1 &969634978
 GameObject:
   m_ObjectHideFlags: 0
@@ -1714,7 +1699,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 415686008}
         m_TargetAssemblyTypeName: LevelCompleteScreen, Assembly-CSharp
-        m_MethodName: NextLevel
+        m_MethodName: LoadNextLevel
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -1792,6 +1777,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4f231c4fb786f3946a6b90b886c48677, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  m_SendPointerHoverToParent: 1
   m_HorizontalAxis: Horizontal
   m_VerticalAxis: Vertical
   m_SubmitButton: Submit
@@ -2031,7 +2017,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 415686008}
         m_TargetAssemblyTypeName: LevelCompleteScreen, Assembly-CSharp
-        m_MethodName: Home
+        m_MethodName: LoadMainMenu
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -2648,7 +2634,7 @@ MonoBehaviour:
     ModeOverride: 0
     LensShift: {x: 0, y: 0}
     GateFit: 2
-    m_SensorSize: {x: 1.7770114, y: 1}
+    m_SensorSize: {x: 1.7783506, y: 1}
   m_Transitions:
     m_BlendHint: 0
     m_InheritPosition: 0
@@ -2664,8 +2650,8 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1624010803}
-  m_LocalRotation: {x: -0.051240236, y: -0.017402671, z: -0.0008930259, w: 0.9985343}
-  m_LocalPosition: {x: 0.3483743, y: 4.9712286, z: -79.99152}
+  m_LocalRotation: {x: -0.051240254, y: -0.017402636, z: -0.0008930243, w: 0.9985343}
+  m_LocalPosition: {x: 0.34837437, y: 4.9712286, z: -79.99152}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -2862,10 +2848,10 @@ PrefabInstance:
     - target: {fileID: 3002536749899608788, guid: 8a8f57edf3523624eb9f886833e8e97a, type: 3}
       propertyPath: oxygenBar
       value: 
-      objectReference: {fileID: 317043745}
+      objectReference: {fileID: 317043747}
     - target: {fileID: 3002536749899608788, guid: 8a8f57edf3523624eb9f886833e8e97a, type: 3}
       propertyPath: carMaxSpeed
-      value: 0
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 3002536749899608788, guid: 8a8f57edf3523624eb9f886833e8e97a, type: 3}
       propertyPath: GameOverMenu
@@ -2890,7 +2876,11 @@ PrefabInstance:
     - target: {fileID: 3002536749899608788, guid: 8a8f57edf3523624eb9f886833e8e97a, type: 3}
       propertyPath: CarbonDioxideBar
       value: 
-      objectReference: {fileID: 923504705}
+      objectReference: {fileID: 0}
+    - target: {fileID: 3002536749899608788, guid: 8a8f57edf3523624eb9f886833e8e97a, type: 3}
+      propertyPath: carbonDioxideBar
+      value: 
+      objectReference: {fileID: 3657289065588101463}
     - target: {fileID: 3002536749899608788, guid: 8a8f57edf3523624eb9f886833e8e97a, type: 3}
       propertyPath: levelCompleteMenu
       value: 
@@ -2906,6 +2896,10 @@ PrefabInstance:
     - target: {fileID: 3294564219125457607, guid: 8a8f57edf3523624eb9f886833e8e97a, type: 3}
       propertyPath: m_Name
       value: Car
+      objectReference: {fileID: 0}
+    - target: {fileID: 9172008908312262094, guid: 8a8f57edf3523624eb9f886833e8e97a, type: 3}
+      propertyPath: m_Mass
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 8a8f57edf3523624eb9f886833e8e97a, type: 3}
@@ -3189,7 +3183,7 @@ MonoBehaviour:
   m_MinValue: 0
   m_MaxValue: 20
   m_WholeNumbers: 0
-  m_Value: 0
+  m_Value: 1
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls: []
@@ -3203,7 +3197,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3657289065588101457}
   - component: {fileID: 3657289065588101459}
-  - component: {fileID: 923504705}
+  - component: {fileID: 3657289065588101463}
   m_Layer: 5
   m_Name: CO2 Bar
   m_TagString: Untagged
@@ -3211,6 +3205,19 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!114 &3657289065588101463
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3657289065588101462}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: be97bb4fc1ed4c629ac643b4f3ee0651, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  CarbonSlider: {fileID: 3657289065588101459}
 --- !u!114 &3657289065748230728
 MonoBehaviour:
   m_ObjectHideFlags: 0

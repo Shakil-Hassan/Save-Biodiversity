@@ -1,12 +1,8 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
-using UnityEngine.UI;
 
 public class LobbyScreenManager : MonoBehaviour
 {
-   private SceneManager sceneManager;
     public string playMoreURL;
 
     public void StartGame()
@@ -21,7 +17,6 @@ public class LobbyScreenManager : MonoBehaviour
 
     public void ExitGame()
     {
-        Debug.Log("Game Exited Sucessfully");
-        Application.Quit(0);
+        Application.Quit();
     }
 }
